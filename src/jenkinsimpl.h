@@ -21,10 +21,16 @@ private:
      QString mAPIKey;
      QString mUserName;
      QString mPassword;
+     bool inited;
+    friend class QJenkins;
 
 protected:
     bool readSettings();
     bool post(const QUrl &aUrl,const QByteArray *args);
+    bool setToken(const QString &token)
+    {
+        mAPIKey=token;
+    }
 
 };
 

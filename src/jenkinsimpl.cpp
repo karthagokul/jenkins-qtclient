@@ -9,7 +9,7 @@
  * Trigger Build : curl -X POST https://localhost:8080/job/Demo/build  --data token=Gokul
  * */
 
-JenkinsImpl::JenkinsImpl(QObject *parent) : QObject(parent)
+JenkinsImpl::JenkinsImpl(QObject *parent) : QObject(parent),inited(false)
 {
 
 }
@@ -51,23 +51,26 @@ bool JenkinsImpl::post(const QUrl &aUrl,const QByteArray *args)
 
 bool JenkinsImpl::init()
 {
+    inited=true;
+
     return readSettings();
 }
 
 bool JenkinsImpl::readSettings()
 {
-    QSettings settings("QJenkins", "jenkins-configs");
+  /*  QSettings settings("QJenkins", "jenkins-configs");
     mServerUrl = settings.value("Server/URL").value<QString>();
     //if(mServerUrl.isEmpty())
     {
         mServerUrl="https://localhost:8080";
         qWarning()<<" Using Defaults";
-    }
+    }*/
 
     //testing
     QString job="Demo";
     QString data="data";
     triggerJob(job,data);
+
 
     return true;
 }

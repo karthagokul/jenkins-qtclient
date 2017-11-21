@@ -6,6 +6,7 @@ int main(int argc,char **argv)
 {
     QApplication app(argc, argv);
     QJenkins jenClient(&app);
+
     jenClient.init();
     QWidget w;
     w.show();
